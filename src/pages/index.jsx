@@ -6,7 +6,8 @@ export default function Home() {
   const [item, setItem] = useState('');
   const [onActive, setOnActive] = useState('andamento');
 
-  function adicionarItem() {
+  function adicionarItem(ev) {
+    ev.preventDefault();
     const data = new Date().toLocaleString();
     setAndamento([...andamento, {
       date: data,
@@ -37,7 +38,7 @@ export default function Home() {
         <div className="flex flex-col gap-4">
           <div className="flex flex-col">
             <label className="text-sm text-white font-semibold mb-1">Adicionar item</label>
-            <div className="flex gap-2">
+            <form className="flex gap-2" onSubmit={(ev) => adicionarItem(ev)}>
               <input
                 className="flex-1 px-2 rounded outline-none"
                 type="text"
@@ -47,13 +48,13 @@ export default function Home() {
               />
               <button
                 className="flex bg-green-400 items-center p-1.5 rounded cursor-pointer hover:bg-green-500 transition-all"
-                onClick={() => adicionarItem()}
+                type="submit"
               >
                 <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={1.5} stroke="currentColor" className="w-6 h-6">
                   <path strokeLinecap="round" strokeLinejoin="round" d="M12 4.5v15m7.5-7.5h-15" />
                 </svg>
               </button>
-            </div>
+            </form>
           </div>
           <div className="text-white flex gap-2">
             <button
